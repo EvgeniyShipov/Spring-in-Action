@@ -4,8 +4,28 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <bean id="client" class="ru.sbt.spring.Client"/>
-    <bean id="eventLogger" class="ru.sbt.spring.ConsoleEventLogger"/>
-    <bean id="app" class="ru.sbt.spring.App"/>
+    <bean id="client" class="ru.shipov.spring.Client">
+        <constructor-arg value="1"/>
+        <constructor-arg value="Bender"/>
+    </bean>
+
+    <bean id="event" class="ru.shipov.spring.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="eventLogger" class="ru.shipov.spring.CacheFileEventLogger" init-method="init" destroy-method="destroy">
+        <constructor-arg value="G:\Hello.txt"/>
+        <constructor-arg value="100"/>
+    </bean>
+
+    <bean id="app" class="ru.shipov.spring.App">
+        <constructor-arg ref="client"/>
+        <constructor-arg ref="eventLogger"/>
+    </bean>
 
 </beans>
