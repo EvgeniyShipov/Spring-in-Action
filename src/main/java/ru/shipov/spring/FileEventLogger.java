@@ -13,9 +13,15 @@ public class FileEventLogger implements EventLogger {
         this.fileName = fileName;
     }
 
-    public void init(){
-        this.file = new File(fileName);
-        file.canWrite();
+    public void init() {
+        try {
+            file = new File(fileName);
+            if (!file.exists())
+                file.createNewFile();
+            file.canWrite();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

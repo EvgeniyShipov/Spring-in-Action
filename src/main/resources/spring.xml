@@ -11,15 +11,15 @@
 
     <bean id="event" class="ru.shipov.spring.Event" scope="prototype">
         <constructor-arg>
-            <bean class="java.util.Date"/>
+            <bean class="java.util.Date" scope="prototype"/>
         </constructor-arg>
         <constructor-arg>
-            <bean class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
+            <bean class="java.text.DateFormat" factory-method="getDateTimeInstance" scope="prototype"/>
         </constructor-arg>
     </bean>
 
     <bean id="eventLogger" class="ru.shipov.spring.CacheFileEventLogger" init-method="init" destroy-method="destroy">
-        <constructor-arg value="G:\Hello.txt"/>
+        <constructor-arg value="src/main/resources/temp.txt"/>
         <constructor-arg value="100"/>
     </bean>
 
