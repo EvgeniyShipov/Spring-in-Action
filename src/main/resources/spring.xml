@@ -9,8 +9,9 @@
     <bean id="client" class="ru.shipov.spring.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="Bender"/>
+        <property name="greeting" value="Hello there!"/>
     </bean>
-    
+
     <bean id="event" class="ru.shipov.spring.Event" scope="prototype">
         <constructor-arg>
             <bean class="java.util.Date" scope="prototype"/>
@@ -23,5 +24,11 @@
     <bean id="app" class="ru.shipov.spring.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="cacheFileLogger"/>
+        <constructor-arg>
+            <map>
+                <entry key="INFO" value-ref="consoleLogger"/>
+                <entry key="ERROR" value-ref="combinedEventLogger"/>
+            </map>
+        </constructor-arg>
     </bean>
 </beans>
