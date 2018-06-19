@@ -1,4 +1,4 @@
-package ru.shipov.spring;
+package ru.shipov.spring.beans;
 
 public class Client {
     private String id;

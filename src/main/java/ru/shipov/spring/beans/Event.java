@@ -1,13 +1,25 @@
-package ru.shipov.spring;
+package ru.shipov.spring.beans;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.util.Date;
 
+@Component
+@Scope("prototype")
 public class Event {
     private final int id;
-    private final Date date;
-    private final DateFormat dataFormat;
     private String message;
+
+    @Autowired
+    @Qualifier("newDate")
+    private final Date date;
+
+    @Autowired
+    private final DateFormat dataFormat;
 
     public Event(Date date, DateFormat dataFormat) {
         this.id = (int) (Math.random() * 999_999);

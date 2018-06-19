@@ -1,14 +1,25 @@
-package ru.shipov.spring;
+package ru.shipov.spring.loggers;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.stereotype.Component;
+import ru.shipov.spring.beans.Event;
 
+import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+@Component
 public class CacheFileEventLogger extends FileEventLogger {
     private int cacheSize;
     private Set<Event> cache;
+
+    public CacheFileEventLogger() {
+    }
+
+    public CacheFileEventLogger(String fileName) {
+        super(fileName);
+    }
 
     public CacheFileEventLogger(String fileName, int casheSize) {
         super(fileName);
@@ -36,6 +47,7 @@ public class CacheFileEventLogger extends FileEventLogger {
         });
     }
 
+    @PreDestroy
     public void destroy() {
         if (!cache.isEmpty())
             writeEventsFromCache();

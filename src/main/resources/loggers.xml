@@ -4,18 +4,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <bean id="consoleLogger" class="ru.shipov.spring.ConsoleEventLogger"/>
+    <bean id="consoleLogger" class="ru.shipov.spring.loggers.ConsoleEventLogger"/>
 
-    <bean id="fileLogger" class="ru.shipov.spring.FileEventLogger" init-method="init">
+    <bean id="fileLogger" class="ru.shipov.spring.loggers.FileEventLogger" init-method="init">
         <constructor-arg value="src/main/resources/temp.txt"/>
     </bean>
 
-    <bean id="cacheFileLogger" class="ru.shipov.spring.CacheFileEventLogger" parent="fileLogger"
+    <bean id="cacheFileLogger" class="ru.shipov.spring.loggers.CacheFileEventLogger" parent="fileLogger"
           destroy-method="destroy">
         <constructor-arg value="100"/>
     </bean>
 
-    <bean id="combinedEventLogger" class="ru.shipov.spring.CombinedEventLogger">
+    <bean id="combinedEventLogger" class="ru.shipov.spring.loggers.CombinedEventLogger">
         <constructor-arg>
             <list>
                 <ref bean="consoleLogger"/>
