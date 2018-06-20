@@ -45,7 +45,7 @@
 
     <bean id="app" class="ru.shipov.spring.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="cacheFileLogger"/>
+        <constructor-arg ref="#{T(ru.shipov.spring.beans.Event).isDay() ? fileEventLogger : consoleEventLogger}"/>
         <constructor-arg ref="loggerMap"/>
     </bean>
 </beans>

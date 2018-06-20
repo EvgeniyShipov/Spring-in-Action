@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Component
@@ -25,6 +26,11 @@ public class Event {
         this.id = (int) (Math.random() * 999_999);
         this.date = date;
         this.dataFormat = dataFormat;
+    }
+
+    public static boolean isDay() {
+        int hour = LocalDateTime.now().getHour();
+        return hour >= 8 && hour < 17;
     }
 
     public String getMessage() {

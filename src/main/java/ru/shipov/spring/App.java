@@ -18,7 +18,7 @@ public class App {
     @Autowired
     private Client client;
 
-    @Resource(name = "defaultLogger")
+    @Resource(name = "#{T(ru.shipov.spring.beans.Event).isDay() ? 'fileEventLogger' : 'consoleEventLogger'}")
     private EventLogger logger;
 
     @Resource(name = "loggerMap")
