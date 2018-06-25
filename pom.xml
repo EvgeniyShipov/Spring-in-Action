@@ -47,6 +47,11 @@
             <artifactId>javax.annotation-api</artifactId>
             <version>${annotation-api.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.1</version>
+        </dependency>
     </dependencies>
 
     <build>
