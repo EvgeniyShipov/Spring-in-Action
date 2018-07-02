@@ -47,7 +47,7 @@ public class LoggingAspect {
     @Around("allLogEventMethords() && args(event)")
     public void aroubdLogEvent(ProceedingJoinPoint joinPoint, Object event) throws Throwable {
         Class<?> clazz = joinPoint.getTarget().getClass();
-        if (statistics.getOrDefault(clazz, 0) > 5) {
+        if (statistics.getOrDefault(clazz, 0) < 5) {
             joinPoint.proceed(new Object[]{event});
         } else {
             System.out.println("Logger is full");

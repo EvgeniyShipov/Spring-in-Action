@@ -1,15 +1,18 @@
 package ru.shipov.spring.beans;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
+@PropertySource("classpath:client.properties")
 public class Client {
 
-    @Value("1")
+    @Value("${id}")
     private String id;
-    @Value("Bender")
+    @Value("${name}")
     private String fullName;
+    @Value("${greeting}")
     private String greeting;
 
     public Client() {

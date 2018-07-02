@@ -7,6 +7,7 @@ import ru.shipov.spring.beans.LoggingAspect;
 
 import javax.annotation.Resource;
 
+
 @Configuration
 @EnableAspectJAutoProxy
 public class AspectConfig {
